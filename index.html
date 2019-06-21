@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Working with Api's</title>
+</head>
+<body>
+    <h1>Working with API's</h1>
+    <button id='send-request'>Send request</button>
+    <div class='bip'>
+        hi
+    </div>
+    <script>
+    let button = document.getElementById('send-request')
+        document.getElementById('send-request').addEventListener('click', getData)    
+        
+
+
+         async function getData() {
+            let comments = await fetch('https://jsonplaceholder.typicode.com/comments')
+            .then( res => res.json())
+            .then( data => data)
+            let filter = comments.filter(item => item.id > 0 && item.id <= 100)
+            let data = filter.forEach(element => {
+                return ( `<div>
+                    <h2>${element.id}</h2>
+                <div>`
+                )
+            })
+            document.getElementsByClassName('bip').innerHTML = data
+        }
+    </script>
+</body>
+</html>
